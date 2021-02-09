@@ -261,10 +261,10 @@ class FormUI extends UI{
 				}	
 			}
 			else{
-				if(intval($value)===0 && intval($key)===0){
+				if($value===0 && intval($key)===0){
 					$radioOpt['checked']="checked";
 				}
-				else if(intval($value)===null && intval($key)===null){
+				else if($value===null && intval($key)===null){
 					$radioOpt['checked']="checked";
 				}
 			}	
@@ -357,10 +357,10 @@ class FormUI extends UI{
 					}
 				}
 				else{
-					if(intval($v_)===0 && intval($key)===0){
+					if($v_===0 && intval($key)===0){
 						$checkboxOpt['checked']="checked";
 					}
-					else if(intval($v_)===null && intval($key)===null){
+					else if($v_===null && intval($key)===null){
 						$checkboxOpt['checked']="checked";
 					}
 				}
@@ -544,6 +544,7 @@ class FormUI extends UI{
 
 	private function _getRequestData(){
 
+		$getData=null;
 		if($this->methodMode==strtolower(RequestCollectionStatic::METHOD_QUERY)){
 			$getData=$this->Request->query()->get();
 		}

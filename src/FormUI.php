@@ -318,6 +318,10 @@ class FormUI extends UI{
 	 */
 	public function tagCheckbox($name,$checkbox,$option=null){
 
+		if(!is_array($checkbox)){
+			$checkbox=[$checkbox=>""];
+		}
+
 		$searchName=$this->_convertName($name);
 		$name=$this->_convertName($name)."[]";
 

@@ -119,6 +119,23 @@ class FormUI extends UI{
 	}
 
 	/**
+	 * tagHidden
+	 * @param $name
+	 * @param $value
+	 * @param $option = null
+	 */
+	public function tagHidden($name,$value,$option = null){
+		if(!$option){
+			$option=[];
+		}
+
+		$option["type"]="hidden";
+		$option["value"]=$value;
+
+		return $this->tagInput($name,$option);
+	}
+
+	/**
 	 * tagTextArea
 	 * @param $name
 	 * @param $option = null

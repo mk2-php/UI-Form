@@ -455,16 +455,25 @@ class FormUI extends UI{
 	 */
 	public function tagError($name,$option=null){
 
+		if(!$option){
+			$option=[];
+		}
+
 		if(!empty(self::$__errorValues[$name])){
 
 			$verror=self::$__errorValues[$name];
 
 			$str='<div class="error">';
-			foreach($verror as $ind=>$v_){
-				$str.=$v_;
-				if($ind){
-					$str.="<br>";
-				}
+			if(!empty($option["allOutput"])){
+				foreach($verror as $ind=>$v_){
+					$str.=$v_;
+					if($ind){
+						$str.="<br>";
+					}
+				}	
+			}
+			else{
+				$str.=$verror[0];
 			}
 			$str.="</div>";
 

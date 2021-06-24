@@ -108,7 +108,9 @@ class FormUI extends UI{
 			if($this->_existRequest()){
 				$getValue=$this->_getValue($name);
 				if(isset($getValue)){
-					$option["value"]=$getValue;
+					if(empty($option["valueLocked"])){
+						$option["value"]=$getValue;
+					}
 				}	
 			}
 		}
@@ -299,32 +301,49 @@ class FormUI extends UI{
 	/**
 	 * tagAgree
 	 * @param $name
+	 * @param $label
 	 * @param $option = null
 	 */
-	public function tagAgree($name,$option=null){
+	public function tagAgree($name,$label,$option=null){
 		
+		$id = "agree_".$name;
+
+		if(!$option){
+			$option=[];
+		}
+
+		$option["id"]=$id;
+
 		$value=null;
 		if(isset($option["value"])){
 			$value=$option["value"];
 			unset($option["value"]);
 		}
 
-		if($value){
+		if(intval($value)){
 			$option["checked"]="checked";			
 		}
 
 		if($this->_existRequest()){
 			$getValue=$this->_getValue($name);
 			if(isset($getValue)){
-				$option["checked"]="checked";
+				if($getValue){
+					$option["checked"]="checked";
+				}
 			}
 		}
 
 		$option['type']="checkbox";
 		$option['value']=1;
 
-		return $this->tagInput($name,$option);
+		$str = $this->tagHidden($name,0,[
+			"valueLocked"=>true,
+		]);
 
+		$str .= $this->tagInput($name,$option);
+		$str .='<label for="'.$id.'">'.$label.'</label>';
+		
+		return $str;
 	}
 
 	/**

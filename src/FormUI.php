@@ -1,5 +1,20 @@
 <?php
 
+/**
+ * ===================================================
+ * 
+ * PHP Framework "Mk2"
+ *
+ * FormUI
+ * 
+ * URL : https://www.mk2-php.com/
+ * 
+ * Copylight : Nakajima-Satoru 2021.
+ *           : Sakaguchiya Co. Ltd. (https://www.teastalk.jp/)
+ * 
+ * ===================================================
+ */
+
 namespace mk2\ui_form;
 
 use Mk2\Libraries\UI;
@@ -12,7 +27,9 @@ class FormUI extends UI{
 	private $methodMode;
 	private static $__errorValues=null;
 
-
+	/**
+	 * __construct
+	 */
 	public function __construct(){
 		parent::__construct();
 
@@ -525,6 +542,10 @@ class FormUI extends UI{
 		return $str;
 	}
 
+	/**
+	 * _convertName
+	 * @param $name
+	 */
 	private function _convertName($name){
 
 		$names=explode(".",$name);
@@ -548,6 +569,10 @@ class FormUI extends UI{
 
 	}
 
+	/**
+	 * _convertOptionString
+	 * @param $option = null
+	 */
 	private function _convertOptionString($option=null){
 
 		if(!$option){
@@ -562,6 +587,9 @@ class FormUI extends UI{
 		return $str;
 	}
 
+	/**
+	 * _existRequest
+	 */
 	private function _existRequest(){
 
 		if($this->_getRequestData()){
@@ -571,6 +599,10 @@ class FormUI extends UI{
 		return false;
 	}
 
+	/**
+	 * _getValue
+	 * @param $name
+	 */
 	private function _getValue($name){
 		
 		$getData=$this->_getRequestData();
@@ -591,6 +623,9 @@ class FormUI extends UI{
 		return $value;
 	}
 
+	/**
+	 * _getRequestData
+	 */
 	private function _getRequestData(){
 
 		$getData=null;
